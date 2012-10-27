@@ -2,9 +2,10 @@
 
 **This is a Role Based Access Control bundle for Laravel using Zend_Acl by Tee++**
 
-Authorize users with your application in a driver-base fashion meaning one implementation works for multiple OAuth 2 providers. This is only to authenticate onto OAuth2 providers and not to build an OAuth2 service.
+Thanks to https://github.com/Vespakoen/authority-laravel for inspiration.
 
-Note that this Spark ONLY provides the authorization mechanism. There's an example controller below, however in a later version there will be a full controller.
+Authorized is almost the same as authority-laravel by Vespakoen
+I just change the core to be Zend_Acl
 
 ## Currently Supported
 
