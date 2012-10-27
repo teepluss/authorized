@@ -79,7 +79,7 @@ return array(
 	'as_user' => function($user)
 	{
 		// Get user roles
-		$user_roles = $user->roles()->lists('name');
+		$user_roles = $user->has_roles();
 		
 		// Set user roles to access list
 		Authorized::set_user_roles($user_roles);

@@ -12,9 +12,10 @@ class Authorized_Create_Tabels {
 		Schema::create('users', function($table)
 		{
 			$table->increments('id');
-			$table->string('email');
+			$table->string('email')->unique();
 			$table->string('password');
 			$table->string('name');
+			$table->integer('age');
 			$table->timestamps();
 		});
 
@@ -23,6 +24,7 @@ class Authorized_Create_Tabels {
 			'email'    => 'admin@domain.com',
 			'password' => Hash::make('test'),
 			'name'     => 'I am Administrator',
+			'age'      => 40
 		));
 		
 		User::create(array(
@@ -30,6 +32,7 @@ class Authorized_Create_Tabels {
 			'email'    => 'staff@domain.com',
 			'password' => Hash::make('test'),
 			'name'     => 'I am Staff',
+			'age'      => 30
 		));
 
 		User::create(array(
@@ -37,13 +40,15 @@ class Authorized_Create_Tabels {
 			'email'    => 'member@domain.com',
 			'password' => Hash::make('test'),
 			'name'     => 'I am Member',
+			'age'      => 25
 		));
 		
 		User::create(array(
 			'id'       => 4,
 			'email'    => 'mutant@domain.com',
 			'password' => Hash::make('test'),
-			'name'     => 'I am Member and Moderator',
+			'name'     => 'I am Member and Staff',
+			'age'      => 17
 		));
 
 
@@ -121,9 +126,9 @@ class Authorized_Create_Tabels {
 		));
 		
 		Rule::create(array(
-			'id'     => 7,
-			'group'  => 'demo',
-			'action' => 'delete',
+			'id'          => 7,
+			'group'       => 'demo',
+			'action'      => 'delete',
 			'description' => 'Can delete Demo.'
 		));
 
@@ -136,8 +141,8 @@ class Authorized_Create_Tabels {
 		});
 		
 		Role::find(1)->rules()->sync(array(1));
-		Role::find(2)->rules()->sync(array(2, 4, 5));
-		Role::find(3)->rules()->sync(array(2, 3));
+		Role::find(2)->rules()->sync(array(2, 5, 6, 7));
+		Role::find(3)->rules()->sync(array(2, 4, 3));
 		
 		Schema::create('role_user', function($table)
 		{

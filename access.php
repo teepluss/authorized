@@ -33,11 +33,25 @@ abstract class Access {
 	public static $acl;
 	
 	/**
-	 * Current user roles.
+	 * All roles in access list.
 	 *
 	 * @var array
 	 */
 	public static $roles = array();
+	
+	/**
+	 * All rules in access list.
+	 *
+	 * @var array
+	 */
+	public static $rules = array();
+	
+	/**
+	 * Current user roles.
+	 *
+	 * @var array
+	 */
+	public static $user_roles = array();
 	
 	/**
 	 * Bypass checking for any rules.
@@ -59,6 +73,7 @@ abstract class Access {
 			static::$acl = new Zend_Acl;
 			
 			// Auto add default role "Guest"
+			static::$roles[] = static::$default_role;
 			static::$acl->addRole(static::$default_role);
 		}
 		
@@ -89,12 +104,12 @@ abstract class Access {
 	/**
 	 * Set user roles.
 	 * 
-	 * @param  array  $roles
+	 * @param  array  $user_roles
 	 * @return void
 	 */
-	public static function set_user_roles(array $roles)
+	public static function set_user_roles(array $user_roles)
 	{
-		static::$roles = $roles;
+		static::$user_roles = $user_roles;
 	}
 	
 	/**
@@ -108,6 +123,7 @@ abstract class Access {
 	{
 		if ( ! static::$acl->hasRole($role))
 		{
+			static::$roles[] = $role;
 			static::$acl->addRole(new Zend_Acl_Role($role), $inherit);
 		}
 	}
@@ -115,14 +131,15 @@ abstract class Access {
 	/**
 	 * Add rule group to access list.
 	 * 
-	 * @param  string  $resource
+	 * @param  string  $rule
 	 * @return void
 	 */
-	public function add_rule($resource)
+	public function add_rule($rule)
 	{
-		if ( ! static::$acl->has($resource))
+		if ( ! static::$acl->has($rule))
 		{
-			static::$acl->addResource(new Zend_Acl_Resource($resource));
+			static::$rules[$rule] = array();
+			static::$acl->addResource(new Zend_Acl_Resource($rule));
 		}
 	}
 	
@@ -182,6 +199,12 @@ abstract class Access {
 			$this->add_rule($group);
 		}
 		
+		// Add all actions to group.
+		if (isset(static::$rules[$group]))
+		{
+			static::$rules[$group][] = $action;
+		}
+		
 		// If action is "*" allow any actions by given NULL.
 		if ($action == '*')
 		{
@@ -190,6 +213,26 @@ abstract class Access {
 		
 		// For more detail see the official manual of Zend_Acl allow|deny
 		call_user_func(array(static::$acl, $type), $role, $group, $action);
+	}
+	
+	/**
+	 * Get all roles in access list.
+	 * 
+	 * @return array
+	 */
+	public static function roles()
+	{
+		return static::$roles;
+	}
+	
+	/**
+	 * Get all rules in access list.
+	 * 
+	 * @return array
+	 */
+	public static function rules()
+	{
+		return static::$rules;
 	}
 	
 	/**
@@ -265,12 +308,12 @@ abstract class Access {
 		
 		// If cannot found any roles for the user set to be a default 
 		// normally is "Guest".
-		if (empty(static::$roles))
+		if (empty(static::$user_roles))
 		{
-			static::$roles = array(static::$default_role);
+			static::$user_roles = array(static::$default_role);
 		}
 		
-		return static::is_allowed(static::$roles, $group, $action);
+		return static::is_allowed(static::$user_roles, $group, $action);
 	}
 	
 	/**
@@ -290,7 +333,9 @@ abstract class Access {
 	 */
 	public static function reset()
 	{
+		static::$user_roles = array();
 		static::$roles = array();
+		static::$rules = array();
 	}
 
 }
