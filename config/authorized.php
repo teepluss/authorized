@@ -25,13 +25,13 @@ return array(
 	'allow_nongroup' => false,
 	
 	/*
-    |--------------------------------------------------------------------------
-    | Initialize Access Permissions 
-    |--------------------------------------------------------------------------
-    |
-    | This closure is called by the Authorized\Access class.
-    |
-    */
+	|--------------------------------------------------------------------------
+	| Initialize Access Permissions 
+	|--------------------------------------------------------------------------
+	|
+	| This closure is called by the Authorized\Access class.
+	|
+	*/
     
 	'initialize' => function($user)
 	{	
@@ -65,16 +65,16 @@ return array(
 	},
 	
 	/*
-    |--------------------------------------------------------------------------
-    | Condition per user who is in application.
-    |--------------------------------------------------------------------------
-    |
-    | Assign roles for specific user. Detailed special conditons for each user.
-    |
-    | return "true" to give a magic passport to user
-    | return "false" to deny all group 
-    |
-    */
+	|--------------------------------------------------------------------------
+	| Condition per user who is in application.
+	|--------------------------------------------------------------------------
+	|
+	| Assign roles for specific user. Detailed special conditons for each user.
+	|
+	| return "true" to give a magic passport to user
+	| return "false" to deny all group 
+	|
+	*/
     
 	'as_user' => function($user)
 	{
