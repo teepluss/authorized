@@ -34,7 +34,8 @@ Installing the tables for authorized is as simple as running its migration.
 	
 **Adding the models**
 
-*User model*
+# User model #
+*application/models/user.php*
 
 ```php
 class User extends Eloquent {
