@@ -10,7 +10,7 @@
  * @see  http://framework.zend.com/manual/1.12/en/zend.acl.html
  */
  
-if ( ! class_exists('Zend_Acl'))
+if ( ! class_exists('Zend_Acl')) 
 {
 	throw new Exception('This bundle required Zend installed.');
 }
