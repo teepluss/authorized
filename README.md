@@ -210,7 +210,7 @@ Config special case for some user
 	
 ## Example Usage 
 	
-Check user authenticate permission
+Check user authenticated permission
 
 	Authorized::can('Blog', 'Add');
 	Authorized::can('Blog', 'Edit');
