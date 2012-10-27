@@ -5,10 +5,14 @@
 Thanks to https://github.com/Vespakoen/authority-laravel for inspiration.
 
 Authorized is almost the same as authority-laravel by Vespakoen. 
-I just change the core to be Zend_Acl, so you need Zend installed.
+I just change the core to be Zend_Acl.
 
 
 ## Installation
+
+Authorized required Zend installed you can easy use Zend Framework Laravel bundle.
+
+https://github.com/lsimkins/laravel-zend-bundle
 
 Download Authorized into your Laravel installation's bundles directory.
 
