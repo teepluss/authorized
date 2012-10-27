@@ -37,41 +37,41 @@ Installing the tables for authorized is as simple as running its migration.
 *User model*
 
 ```php
-public function action_session($provider)
-{
-	Bundle::start('laravel-oauth2');
-	
-	$provider = OAuth2::provider($provider, array(
-		'id' => 'your-client-id',
-		'secret' => 'your-client-secret',
-	));
+class User extends Eloquent {
 
-	if ( ! isset($_GET['code']))
+	/**
+	 * User has many and belongs to roles.
+	 * 
+	 * @return Role
+	 */
+	public function roles()
 	{
-		// By sending no options it'll come back here
-		return $provider->authorize();
+		return $this->has_many_and_belongs_to('Role');
 	}
-	else
+	
+	/**
+	 * Has roles implement to reduce duplicated query
+	 * 
+	 * @param  string  $key
+	 * @return array|string
+	 */
+	public function has_roles($key = null)
 	{
-		// Howzit?
-		try
-		{
-			$params = $provider->access($_GET['code']);
-			
-        		$token = new OAuth2_Token_Access(array('access_token' => $params->access_token));
-        		$user = $provider->get_user_info($token);
-
-			// Here you should use this information to A) look for a user B) help a new user sign up with existing data.
-			// If you store it all in a cookie and redirect to a registration page this is crazy-simple.
-			echo "<pre>";
-			var_dump($user);
+		$ckey = 'has_roles_'.$this->id;
+		$cache = Cache::driver('memory');
+		
+		if ( ! $roles = $cache->get($ckey)) 
+		{		
+			$roles = $this->roles()->lists('name');
+			$cache->forever($ckey, $roles);
 		}
 		
-		catch (OAuth2_Exception $e)
+		if ( ! is_null($key))
 		{
-			show_error('That didnt work: '.$e);
+			return $roles[$key];
 		}
 		
+		return $roles;
 	}
 }
 ```
