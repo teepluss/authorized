@@ -10,7 +10,15 @@ I just change the core to be Zend_Acl, so you need Zend installed.
 
 ## Usage Example
 
-	php sdasd
+Enter your database settings in config/database.php
+
+Add the following line to application/bundles.php
+	
+	return array(
+		'authorized' => array('auto' => true)
+	)
+
+	php artisan migrate authorized
 
 ```php
 public function action_session($provider)
