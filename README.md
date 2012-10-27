@@ -126,6 +126,44 @@ Installing the tables for authorized is as simple as running its migration.
 
 	php artisan migrate authorized
 	
+## To Config special rule 
+
+*bundles/authorized/config/authorized.php*
+
+```php
+'as_user' => function($user)
+{
+	// Get user roles
+	$user_roles = $user->has_roles();
+	
+	// Set user roles to access list
+	Authorized::set_user_roles($user_roles);
+	
+	// Hard code some role to allow/deny somewhere for some user
+	if ($user->id == 1 and in_array('Father', $user_roles))
+	{
+		// Force allow group "massage" acion "go" to the role "Father"
+		$acl->allow('Father', 'massage', 'go');
+		
+		// Force deny group "massage" acion "follow" to the role "Mother"
+		$acl->deny('Mother', 'massage', 'follow');
+	}
+	
+	// Allow any rule to some user
+	if ($user->email == 'mryes@domain.com')
+	{
+		return true;
+	}
+	
+	// Deny any rule for some user
+	if ($user->email == 'myno@domain.com')
+	{
+		return false;
+	}
+
+}
+```
+	
 ## Example Usage
 	
 Check user authenticate permission
