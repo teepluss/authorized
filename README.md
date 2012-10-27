@@ -229,6 +229,14 @@ Get access rules list
 
 	Authorized::rules();
 	
+## Example Code
+
+Example code can be found:
+
+*bundles/authorized/example/example.php
+
+Move example.php in you controller and run it!
+	
 ## Support or Contact
 
 If you have some problem, Contact teepluss@gmail.com 
