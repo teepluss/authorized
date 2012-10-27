@@ -233,7 +233,7 @@ Get access rules list
 
 Example code can be found:
 
-*bundles/authorized/example/example.php
+*bundles/authorized/example/example.php*
 
 Move example.php in you controller and run it!
 	
