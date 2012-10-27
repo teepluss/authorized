@@ -24,15 +24,8 @@ Add the following line to application/bundles.php
 		)
 	);
 	
-Install migrations using Artisan CLI:
-
-	php artisan migrate:install
-	
-Installing the tables for authorized is as simple as running its migration.
-
-	php artisan migrate authorized
-	
 Add user model
+
 *application/models/user.php*
 
 ```php
@@ -74,3 +67,11 @@ class User extends Eloquent {
 	}
 }
 ```
+
+Install migrations using Artisan CLI:
+
+	php artisan migrate:install
+	
+Installing the tables for authorized is as simple as running its migration.
+
+	php artisan migrate authorized
