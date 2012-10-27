@@ -8,7 +8,7 @@ Authorized is almost the same as authority-laravel by Vespakoen.
 I just change the core to be Zend_Acl, so you need Zend installed.
 
 
-## Usage Example
+## Installation
 
 Download Authorized into your Laravel installation's bundles directory.
 
@@ -32,9 +32,7 @@ Installing the tables for authorized is as simple as running its migration.
 
 	php artisan migrate authorized
 	
-**Adding the models**
-
-# User model #
+Add user model
 *application/models/user.php*
 
 ```php
