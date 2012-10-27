@@ -9,7 +9,7 @@ class Authorized_Create_Tabels {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table)
+		Schema::create('users', function($table) 
 		{
 			$table->increments('id');
 			$table->string('email')->unique();
