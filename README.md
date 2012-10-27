@@ -17,6 +17,9 @@ https://github.com/lsimkins/laravel-zend-bundle
 Download Authorized into your Laravel installation's bundles directory.
 
 	git clone -b master git@github.com:teepluss/authorized-laravel.git
+	
+OR
+	php artisan bundle:install authorized
 
 Enter your database settings in config/database.php
 
