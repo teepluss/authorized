@@ -48,8 +48,7 @@ class Authorized extends Authorized\Access {
 		$as_user = Config::get('authorized::authorized.as_user');
 		
 		// Pass a user to config user's roles
-		$returned = call_user_func($as_user, $user);
-		
+		$returned = call_user_func($as_user, $user);		
 		
 		// If returned true mean current rule force to allowed.
 		if ($returned === true) 
