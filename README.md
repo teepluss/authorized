@@ -10,13 +10,25 @@ I just change the core to be Zend_Acl, so you need Zend installed.
 
 ## Usage Example
 
+Download Authorized into your Laravel installation's bundles directory.
+
+	git clone -b master git@github.com:teepluss/authorized-laravel.git
+
 Enter your database settings in config/database.php
 
 Add the following line to application/bundles.php
 	
 	return array(
-		'authorized' => array('auto' => true)
-	)
+		'authorized' => array(
+			'auto' => true
+		)
+	);
+	
+Install migrations using Artisan CLI:
+
+	php artisan migrate:install
+	
+Installing the tables for authorized is as simple as running its migration.
 
 	php artisan migrate authorized
 
