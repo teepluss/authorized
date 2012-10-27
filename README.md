@@ -205,7 +205,7 @@ Config special case for some user
 }
 ```
 	
-## Example Usage
+## Example Usage 
 	
 Check user authenticate permission
 
