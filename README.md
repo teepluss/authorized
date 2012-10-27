@@ -10,7 +10,7 @@ I just change the core to be Zend_Acl.
 
 ## Installation
 
-Authorized required Zend installed you can easy use Zend Framework Laravel bundle.
+Authorized required Zend installed you can easy use Zend Framework Laravel bundle by Isimkins.
 
 https://github.com/lsimkins/laravel-zend-bundle
 
@@ -225,3 +225,10 @@ Get access roles list
 Get access rules list
 
 	Authorized::rules();
+	
+## Support or Contact
+
+If you have some problem, Contact teepluss@gmail.com 
+	
+## Useful links:
+- Zend_Acl documentation:      http://framework.zend.com/manual/1.12/en/zend.acl.html
