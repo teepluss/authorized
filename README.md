@@ -31,6 +31,10 @@ Install migrations using Artisan CLI:
 Installing the tables for authorized is as simple as running its migration.
 
 	php artisan migrate authorized
+	
+**Adding the models**
+
+*User model*
 
 ```php
 public function action_session($provider)
