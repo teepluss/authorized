@@ -75,7 +75,7 @@ abstract class Access {
 			// Auto add default role "Guest"
 			static::$roles[] = static::$default_role;
 			static::$acl->addRole(static::$default_role);
-		}
+		} 
 		
 		return new static();
 	}
