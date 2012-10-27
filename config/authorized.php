@@ -81,7 +81,7 @@ return array(
 		// Get user roles
 		$user_roles = $user->has_roles();
 		
-		// Set user roles to access list
+		// Set user roles to access list 
 		Authorized::set_user_roles($user_roles);
 		
 		// Hard code some role to allow/deny somewhere for some user
