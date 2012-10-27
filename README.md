@@ -125,3 +125,24 @@ Install migrations using Artisan CLI:
 Installing the tables for authorized is as simple as running its migration.
 
 	php artisan migrate authorized
+	
+## Example Usage
+	
+Check user authenticate permission
+
+	Authorized::can('Blog', 'Add');
+	Authorized::can('Blog', 'Edit');
+	Authorized::can('Blog', 'Delete');
+	
+Check specific user permission
+
+	$user = User::find($id);
+	Authorized::can('Blog', 'Add', $user);
+	
+Get access roles list
+
+	Authorized::roles();
+	
+Get access rules list
+
+	Authorized::rules();
