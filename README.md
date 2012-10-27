@@ -68,6 +68,56 @@ class User extends Eloquent {
 }
 ```
 
+Add role model
+
+*application/models/role.php*
+
+```php
+class Role extends Eloquent {
+
+	/**
+	 * Role has many and blongs to rules.
+	 * 
+	 * @return  Rule
+	 */
+	public function rules()
+	{
+		return $this->has_many_and_belongs_to('Rule');
+	}
+	
+	/**
+	 * Role has many and blongs to user.
+	 * 
+	 * @return  User
+	 */
+	public function users()
+	{
+		return $this->has_many_and_belongs_to('User');
+	}
+	
+}
+```
+
+Add rule model 
+
+*application/models/rule.php*
+
+```php
+class Rule extends Eloquent {
+
+	/**
+	 * Rule has many and blongs to roles
+	 * 
+	 * @return Role
+	 */
+	public function roles()
+	{
+		return $this->has_many_and_belongs_to('Role');
+	}
+	
+}
+```
+
 Install migrations using Artisan CLI:
 
 	php artisan migrate:install
