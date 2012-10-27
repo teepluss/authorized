@@ -32,7 +32,7 @@ class Authorized extends Authorized\Access {
 	}
 	
 	/**
-	 * Change to user who need to check.
+	 * Change to user who need to check. 
 	 *
 	 * @param  object  Laravel\Eloquent User
 	 * @return void
