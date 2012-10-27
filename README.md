@@ -4,20 +4,13 @@
 
 Thanks to https://github.com/Vespakoen/authority-laravel for inspiration.
 
-Authorized is almost the same as authority-laravel by Vespakoen
-I just change the core to be Zend_Acl
+Authorized is almost the same as authority-laravel by Vespakoen. 
+I just change the core to be Zend_Acl, so you need Zend installed.
 
-## Currently Supported
-
-- Facebook
-- GitHub
-- Google
-- Windows Live
-- YouTube
 
 ## Usage Example
 
-http://example.com/auth/session/facebook
+	php sdasd
 
 ```php
 public function action_session($provider)
