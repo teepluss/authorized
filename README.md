@@ -22,11 +22,7 @@ Enter your database settings in config/database.php
 
 Add the following line to application/bundles.php
 	
-	return array(
-		'authorized' => array(
-			'auto' => true
-		)
-	);
+	'authorized' => array('auto' => true),
 	
 Add user model
 
