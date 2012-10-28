@@ -14,11 +14,8 @@ Authorized required Zend installed you can easy use Zend Framework Laravel bundl
 
 https://github.com/lsimkins/laravel-zend-bundle
 
-Download Authorized into your Laravel installation's bundles directory.
+Install this bundle by running the following CLI command:
 
-	git clone -b master git@github.com:teepluss/authorized-laravel.git
-	
-OR
 	php artisan bundle:install authorized
 
 Enter your database settings in config/database.php
