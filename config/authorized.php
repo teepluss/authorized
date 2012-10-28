@@ -29,7 +29,7 @@ return array(
 	| Initialize Access Permissions 
 	|--------------------------------------------------------------------------
 	|
-	| This closure is called by the Authorized\Access class.
+	| Setup access list control base roles / rules.
 	|
 	*/
     
@@ -69,7 +69,7 @@ return array(
 	| Condition per user who is in application.
 	|--------------------------------------------------------------------------
 	|
-	| Assign roles for specific user. Detailed special conditons for each user.
+	| Assign user roles. Detailed special conditons for each user.
 	|
 	| return "true" to give a magic passport to user
 	| return "false" to deny all group 
