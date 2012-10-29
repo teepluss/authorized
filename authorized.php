@@ -24,10 +24,13 @@ class Authorized extends Authorized\Access {
 	{
 		static::reset();
 		
-		// Get initailize config.
-		$initialize = Config::get('authorized::authorized.initialize');
+		// Get default initialize profile.
+		$profile = Config::get('authorized::authorized.default');
 		
-		// Set up all roles / rules, pass an auth user to config.
+		// Get initailize callback.
+		$initialize = Config::get('authorized::authorized.'.$profile);
+		
+		// Callback to set up all roles / rules, pass an auth user to config.
 		call_user_func($initialize, $user);
 	}
 	

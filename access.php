@@ -119,7 +119,7 @@ abstract class Access {
 	 * @param  array   $inherit ( inherit permission from parent roles )
 	 * @return void
 	 */
-	public function add_role($role, array $inherit = array())
+	public function add_role($role, $inherit = array())
 	{
 		if ( ! static::$acl->hasRole($role))
 		{
@@ -155,7 +155,7 @@ abstract class Access {
 	 * @param  bool    $force_rule
 	 * @return void
 	 */
-	public function allow($role, $group, $action = null, $force_rule = true)
+	public function allow($role, $group = null, $action = null, $force_rule = true)
 	{
 		$this->permission('allow', $role, $group, $action, $force_rule);
 	}
@@ -203,6 +203,12 @@ abstract class Access {
 		if (isset(static::$rules[$group]))
 		{
 			static::$rules[$group][] = $action;
+		}
+		
+		// If grouo is "*" allow any groups by given NULL.
+		if ($group == '*')
+		{
+			$group = null;
 		}
 		
 		// If action is "*" allow any actions by given NULL.
