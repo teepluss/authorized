@@ -28,7 +28,7 @@ class Authorized extends Authorized\Access {
 		$profile = Config::get('authorized::authorized.default');
 		
 		// Get initailize callback.
-		$initialize = Config::get('authorized::authorized.'.$profile);
+		$initialize = Config::get('authorized::authorized.profiles.'.$profile);
 		
 		// Callback to set up all roles / rules, pass an auth user to config.
 		call_user_func($initialize, $user);

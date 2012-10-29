@@ -37,111 +37,106 @@ return array(
 	
 	/*
 	|--------------------------------------------------------------------------
-	| Initialize Access Permissions (Manual)
+	| Initialize access permissions profiles.
 	|--------------------------------------------------------------------------
 	|
 	| Setup access list control base roles / rules.
 	|
 	*/
 	
-	'manual' => function($user)
-	{
-		// Instance access 
-		$acl = Authorized::instance();
-		
-		// Add Member to roles list.
-		$acl->add_role('Member');
-		$acl->add_role('Contributor');
-		
-		// This is mean Author inherit from "Member" and "Contributor"
-		// Author can do anything the same as "Member" and "Contributor" can.
-		$acl->add_role('Author', array('Member', 'Contributor'));
-		
-		// Add Staff inherit from "Author"
-		// Staff can do anything the same as "Member", "Contrubutor" and Author can.
-		$acl->add_role('Staff', 'Author');
-		
-		// Add Editor to roles list.
-		$acl->add_role('Editor');
-		
-		// Add Admin to roles list.
-		$acl->add_role('Admin');
-		
-		// Add a resource Blog.
-		$acl->add_rule('Blogs');
-		
-		// Add a resource Photos.
-		$acl->add_rule('Photos');
-		
-		// Allow "Member" access "Blogs" in action "read".
-		$acl->allow('Member', 'Blogs', 'read');
-		
-		// Allow "Contributor" access "Blogs" in actions "read" and "write".
-		$acl->allow('Contributor', 'Blogs', 'read');
-		$acl->allow('Contributor', 'Blogs', 'write');
-		
-		// Allow "Author" access "Blogs" in actions "delete" and "publish".
-		// Allow "Author" access "Photos" in action "upload",
-		// Author inherit permmsion from "Contributor", so The Author also access "Blogs" in actions read and write.
- 		$acl->allow('Author', 'Blogs', 'delete');
-		$acl->allow('Author', 'Blogs', 'publish');
-		$acl->allow('Author', 'Photos', 'upload');
-		
-		// But sometimes we need to force deny for some resource inherited from parents.
-		$acl->deny('Author', 'Blogs', 'write');
-		
-		// Allow "Editor" do any actions in "Blogs" and "Photos" except "delete".
-		$acl->allow('Editor', 'Blogs', '*');
-		$acl->allow('Editor', 'Photos', '*');
-		$acl->deny('Editor', 'Blogs', 'delete');
-		$acl->deny('Editor', 'Photos', 'delete');
-		
-		// Admin can access anything
-		$acl->allow('Admin', '*', '*');
-		
-		// Set current auth user to access list
-		Authorized::as_user($user);
-	},
-    
-    /*
-	|--------------------------------------------------------------------------
-	| Initialize Access Permissions (Database)
-	|--------------------------------------------------------------------------
-	|
-	| Setup access list control base roles / rules.
-	|
-	*/
+	'profiles' => array(
 	
-	'database' => function($user)
-	{	
-		// Instance access 
-		$acl = Authorized::instance();
-		
-		// Get all roles with rules
-		$roles = Role::with('rules')->get();
-
-		foreach ($roles as $role)
+		'manual' => function($user)
 		{
-			// Add roles to access list
-			$acl->add_role($role->name);
+			// Instance access 
+			$acl = Authorized::instance();
 			
-			foreach ($role->rules as $rule)
+			// Add Member to roles list.
+			$acl->add_role('Member');
+			$acl->add_role('Contributor');
+			
+			// This is mean Author inherit from "Member" and "Contributor"
+			// Author can do anything the same as "Member" and "Contributor" can.
+			$acl->add_role('Author', array('Member', 'Contributor'));
+			
+			// Add Staff inherit from "Author"
+			// Staff can do anything the same as "Member", "Contrubutor" and Author can.
+			$acl->add_role('Staff', 'Author');
+			
+			// Add Editor to roles list.
+			$acl->add_role('Editor');
+			
+			// Add Admin to roles list.
+			$acl->add_role('Admin');
+			
+			// Add a resource Blog.
+			$acl->add_rule('Blogs');
+			
+			// Add a resource Photos.
+			$acl->add_rule('Photos');
+			
+			// Allow "Member" access "Blogs" in action "read".
+			$acl->allow('Member', 'Blogs', 'read');
+			
+			// Allow "Contributor" access "Blogs" in actions "read" and "write".
+			$acl->allow('Contributor', 'Blogs', 'read');
+			$acl->allow('Contributor', 'Blogs', 'write');
+			
+			// Allow "Author" access "Blogs" in actions "delete" and "publish".
+			// Allow "Author" access "Photos" in action "upload",
+			// Author inherit permmsion from "Contributor", so The Author also access "Blogs" in actions read and write.
+	 		$acl->allow('Author', 'Blogs', 'delete');
+			$acl->allow('Author', 'Blogs', 'publish');
+			$acl->allow('Author', 'Photos', 'upload');
+			
+			// But sometimes we need to force deny for some resource inherited from parents.
+			$acl->deny('Author', 'Blogs', 'write');
+			
+			// Allow "Editor" do any actions in "Blogs" and "Photos" except "delete".
+			$acl->allow('Editor', 'Blogs', '*');
+			$acl->allow('Editor', 'Photos', '*');
+			$acl->deny('Editor', 'Blogs', 'delete');
+			$acl->deny('Editor', 'Photos', 'delete');
+			
+			// Admin can access anything
+			$acl->allow('Admin', '*', '*');
+			
+			// Set current auth user to access list
+			Authorized::as_user($user);
+		},
+		
+		'database' => function($user)
+		{	
+			// Instance access 
+			$acl = Authorized::instance();
+			
+			// Get all roles with rules
+			$roles = Role::with('rules')->get();
+	
+			foreach ($roles as $role)
 			{
-				// Add rules to access list, then give permisstion to role
-				// $acl->add_rule($rule->group, $rule->action);
-				// $acl->allow($role->name, $rule->group, $rule->action);
+				// Add roles to access list
+				$acl->add_role($role->name);
 				
-				// This is a short way to do things above
-				$acl->allow($role->name, $rule->group, $rule->action, true);
+				foreach ($role->rules as $rule)
+				{
+					// Add rules to access list, then give permisstion to role
+					// $acl->add_rule($rule->group, $rule->action);
+					// $acl->allow($role->name, $rule->group, $rule->action);
+					
+					// This is a short way to do things above
+					$acl->allow($role->name, $rule->group, $rule->action, true);
+				}
 			}
+			
+			// Set current auth user to access list
+			Authorized::as_user($user);
+			
+			// This is mean you allow "Unauthorized" user to access all the things.
+			// $acl->allow('Guest', null, null);
 		}
-		
-		// Set current auth user to access list
-		Authorized::as_user($user);
-		
-		// This is mean you allow "Unauthorized" user to access all the things.
-		// $acl->allow('Guest', null, null);
-	},
+	
+	),
 	
 	/*
 	|--------------------------------------------------------------------------
