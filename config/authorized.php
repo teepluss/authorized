@@ -95,6 +95,8 @@ return array(
 			// Allow "Editor" do any actions in "Blogs" and "Photos" except "delete".
 			$acl->allow('Editor', 'Blogs', '*');
 			$acl->allow('Editor', 'Photos', '*');
+			
+			// deny some resources.
 			$acl->deny('Editor', 'Blogs', 'delete');
 			$acl->deny('Editor', 'Photos', 'delete');
 			
