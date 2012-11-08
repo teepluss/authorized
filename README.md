@@ -344,7 +344,11 @@ Get access rules list
 
 Example code can be found:
 
-*bundles/authorized/example/example.php*
+*bundles/authorized/controller/examples.php*
+
+You can run example at:
+	
+	http://domain.com/acl_examples
 
 Move example.php in you controller and run it!
 	
