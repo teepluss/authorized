@@ -340,11 +340,7 @@ Get access rules list
 
 	Authorized::rules();
 	
-## Example Code
-
-Example code can be found:
-
-*bundles/authorized/controller/examples.php*
+## Examples
 
 You can run example at:
 	
