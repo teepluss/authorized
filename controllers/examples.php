@@ -1,8 +1,10 @@
 <?php
 
-class Example_Controller extends Base_Controller {
+class Authorized_Examples_Controller extends Controller {
+
+	public $restful = true;
 	
-	public function action_index()
+	public function get_index()
 	{
 		$all_rules = Authorized::rules();
 		
@@ -16,7 +18,7 @@ class Example_Controller extends Base_Controller {
 		{
 			$user = User::find($i);
 			
-			echo '<h2>'.$user->name.' ('. implode(', ', $user->has_roles()) .')</h2>';
+			echo '<h2>'.$user->name.' ('. implode(', ', $user->roles_list) .')</h2>';
 			foreach ($all_rules as $group => $actions)
 			{
 				echo '<ul>';
