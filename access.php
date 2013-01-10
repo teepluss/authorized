@@ -202,7 +202,10 @@ abstract class Access {
 		// Add all actions to group.
 		if (isset(static::$rules[$group]))
 		{
-			static::$rules[$group][] = $action;
+			if ( ! in_array($action, static::$rules[$group]))
+			{
+				static::$rules[$group][] = $action;
+			}
 		}
 		
 		// If grouo is "*" allow any groups by given NULL.
