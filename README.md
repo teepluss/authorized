@@ -348,9 +348,11 @@ You can run example at:
 
 Move example.php in you controller and run it!
 	
-## Support or Contact
-
-If you have some problem, Contact teepluss@gmail.com 
-	
 ## Useful links:
 - Zend_Acl documentation:      http://framework.zend.com/manual/1.12/en/zend.acl.html
+
+## Support or Contact
+
+If you have some problem, Contact teepluss@gmail.com
+
+<a href='http://www.pledgie.com/campaigns/22201'><img alt='Click here to lend your support to: Donation and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/22201.png?skin_name=chrome' border='0' /></a>
