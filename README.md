@@ -1,11 +1,13 @@
 # Laravel Authorized
 
-**This is a Role Based Access Control bundle for Laravel using Zend_Acl by Tee++**
+**This is a Role Based Access Control bundle for Laravel 3.* using Zend_Acl by Tee++**
 
 Thanks to https://github.com/Vespakoen/authority-laravel for inspiration.
 
 Authorized is almost the same as authority-laravel by Vespakoen. 
 I just change the core to be Zend_Acl.
+
+**Note: For Laravel 4 use [Cartalyst Sentry](https://cartalyst.com/manual/sentry).**
 
 
 ## Installation
